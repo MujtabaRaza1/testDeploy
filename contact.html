@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Wefleet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="logo">
+                <img src="assets/wefleet logo.png" alt="wefleet logo">
+            </div>
+            <div class="nav-menu">
+                <ul class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+                <div class="cta-buttons">
+                    <button class="btn btn-contact">Contact Us</button>
+                    <button class="btn btn-call">Call Now!</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero container">
+            <h1>Contact Us</h1>
+            <p>Get in touch with our team for fleet services, emergency assistance, or general inquiries. We're available 24/7 to help you keep your fleet running smoothly.</p>
+        </section>
+
+        <section class="contact-section container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>Emergency Service</h3>
+                        <p>Available 24/7 for immediate assistance</p>
+                        <a href="tel:1-800-WEFLEET" class="contact-link">1-800-WEFLEET</a>
+                    </div>
+                    <div class="info-card">
+                        <h3>General Inquiries</h3>
+                        <p>For non-emergency questions</p>
+                        <a href="mailto:info@wefleet.com" class="contact-link">info@wefleet.com</a>
+                    </div>
+                    <div class="info-card">
+                        <h3>Office Location</h3>
+                        <p>123 Fleet Street<br>Los Angeles, CA 90001</p>
+                        <a href="#" class="contact-link">Get Directions</a>
+                    </div>
+                    <div class="info-card">
+                        <h3>Business Hours</h3>
+                        <p>Emergency Service: 24/7<br>Office: Mon-Fri, 9am-6pm</p>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="emergency">Emergency Service</option>
+                                <option value="maintenance">Fleet Maintenance</option>
+                                <option value="quote">Request Quote</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-accent">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <div class="map-container">
+                <!-- Replace with actual map embed code -->
+                <div class="map-placeholder">
+                    <p>Map Loading...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section container">
+            <h2>Common Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>What information should I have ready for emergency service?</h3>
+                    <p>Please have your vehicle location, company ID (if applicable), and a description of the issue ready when calling for emergency service.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How quickly can you respond to emergency calls?</h3>
+                    <p>Our average response time is 30 minutes in metropolitan areas. Response times may vary based on location and conditions.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you offer service outside business hours?</h3>
+                    <p>Yes, our emergency roadside assistance is available 24/7, including holidays and weekends.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How can I get a quote for fleet services?</h3>
+                    <p>You can request a quote through our contact form or call our sales team directly during business hours.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="footer-newsletter">
+                <p>Subscribe to our newsletter for the latest updates on new features and product releases.</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <button type="submit" class="subscribe-btn">Subscribe</button>
+                    <p class="consent-text">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
+                </form>
+            </div>
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="assets/wefleet logo.png" alt="wefleet logo">
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="prop-content">
+                <a href="#">Prop Content</a>
+                <a href="#">Prop Content</a>
+                <a href="#">Prop Content</a>
+            </div>
+            <p class="copyright">© 2025 weFleet</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
