@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wefleet</title>
+    <!-- Load critical CSS first -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Preload the GIF -->
+    <link rel="preload" as="image" href="assets/Wefleet-GIF-Black.gif">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <img src="assets/Wefleet-GIF-Black.gif" alt="Loading animation" loading="eager">
+    </div>
+
+    <header>
+        <nav class="container">
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="logo">
+                <img src="assets/wefleet logo.png" alt="wefleet logo">
+            </div>
+            <div class="nav-menu">
+                <ul class="menu">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./pricing.html">Pricing</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                </ul>
+                <div class="cta-buttons">
+                    <button class="btn btn-contact">Contact Us</button>
+                    <button class="btn btn-call">Call Now!</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <h2>24/7 Fleet Care & Emergency Road Services</h2>
+            <p>Professional fleet maintenance and emergency roadside assistance. From routine fleet car washes to urgent roadside repairs, we're your trusted automotive service partner.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Schedule Fleet Service</button>
+                <button class="btn btn-secondary">Emergency Assistance</button>
+            </div>
+        </section>
+
+        <section class="sliders-container">
+            <div class="slider slider-top">
+                <div class="slider-track">
+                    <!-- Images will be duplicated in JavaScript -->
+                </div>
+            </div>
+            <div class="slider slider-bottom">
+                <div class="slider-track">
+                    <!-- Images will be duplicated in JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="features-section container">
+        <div class="features-image">
+            <img src="assets/image1.jpeg" alt="Feature Image" id="feature-display-image">
+        </div>
+        <div class="features-content">
+            <div class="feature-item active" data-image="assets/image1.jpeg">
+                <h3>Fleet Washing Services</h3>
+                <p>Keep your entire fleet looking professional with our comprehensive washing services. Regular cleaning schedules tailored to your fleet size and needs.</p>
+            </div>
+            <div class="feature-item" data-image="assets/image2.jpeg">
+                <h3>Preventive Maintenance</h3>
+                <p>Regular maintenance programs to keep your fleet running smoothly. From oil changes to brake services, we handle it all.</p>
+            </div>
+            <div class="feature-item" data-image="assets/image3.jpeg">
+                <h3>24/7 Emergency Response</h3>
+                <p>Round-the-clock roadside assistance for unexpected breakdowns. Quick response for tire changes, battery jumps, and mechanical failures.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tilted-section">
+        <div class="tilted-container">
+            <div class="content-card">
+                <div class="content-text">
+                    <h2>24/7 Emergency Roadside Assistance</h2>
+                    <p>Stranded on the road? We're just a call away. Our rapid response team provides immediate assistance for tire changes, battery issues, mechanical failures, and towing services - anytime, anywhere.</p>
+                </div>
+                <button class="btn btn-accent">Call Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section container">
+        <div class="pricing-header">
+            <span>Fleet Service Plans</span>
+            <h2>Choose the Perfect Plan for Your Fleet</h2>
+            <p>Flexible fleet maintenance and emergency service packages designed to keep your vehicles running smoothly.</p>
+        </div>
+        <div class="pricing-toggle">
+            <button class="toggle-btn active">Monthly</button>
+            <button class="toggle-btn">Annually</button>
+        </div>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <div class="card-label">Basic Fleet Care</div>
+                <div class="price">$29</div>
+                <div class="price-description">Perfect for small fleets up to 5 vehicles</div>
+                <ul class="features-list">
+                    <li>Monthly Fleet Wash Service</li>
+                    <li>Basic Maintenance Checks</li>
+                    <li>Emergency Roadside Assistance</li>
+                    <li>24/7 Phone Support</li>
+                    <li>Online Booking System</li>
+                </ul>
+                <button class="pricing-btn">Get Started</button>
+            </div>
+            <div class="pricing-card">
+                <div class="card-label">Professional Fleet</div>
+                <div class="price">$79</div>
+                <div class="price-description">Ideal for medium fleets up to 15 vehicles</div>
+                <ul class="features-list">
+                    <li>Bi-weekly Fleet Wash Service</li>
+                    <li>Comprehensive Maintenance</li>
+                    <li>Priority Emergency Response</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>Fleet Management Dashboard</li>
+                    <li>Tire Service & Replacement</li>
+                </ul>
+                <button class="pricing-btn">Get Started</button>
+            </div>
+            <div class="pricing-card">
+                <div class="card-label">Enterprise Fleet</div>
+                <div class="price">$149</div>
+                <div class="price-description">Perfect for large fleets of 16+ vehicles</div>
+                <ul class="features-list">
+                    <li>Weekly Fleet Wash Service</li>
+                    <li>Full Preventive Maintenance</li>
+                    <li>VIP Emergency Response</li>
+                    <li>24/7 On-Site Support</li>
+                    <li>Custom Maintenance Schedule</li>
+                    <li>Full Vehicle Diagnostics</li>
+                    <li>Mobile Service Units</li>
+                </ul>
+                <button class="pricing-btn">Get Started</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="steps-section">
+        <div class="steps-container">
+            <div class="steps-left">
+                <h2>How Our Service Works</h2>
+                <p>From fleet maintenance to emergency response, we've streamlined our process to provide you with efficient and reliable service every step of the way.</p>
+                <button class="btn btn-accent">Get Started</button>
+            </div>
+            <div class="steps-right">
+                <div class="step-card" data-step="01">
+                    <h3>Step 1</h3>
+                    <p>Contact our 24/7 service center through our app, website, or emergency hotline. Our team is always ready to assist you.</p>
+                </div>
+                <div class="step-card" data-step="02">
+                    <h3>Step 2</h3>
+                    <p>Describe your service needs or emergency situation. We'll dispatch the nearest qualified team to your location.</p>
+                </div>
+                <div class="step-card" data-step="03">
+                    <h3>Step 3</h3>
+                    <p>Our professional team arrives with all necessary equipment and begins work immediately to get you back on the road.</p>
+                </div>
+                <div class="step-card" data-step="04">
+                    <h3>Step 4</h3>
+                    <p>Service completed with quality assurance. We follow up to ensure your complete satisfaction with our service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-header">
+            <h2>Testimonials</h2>
+            <p>Hear what our satisfied fleet managers and business owners have to say about our comprehensive vehicle management solutions.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "Their fleet management system has revolutionized our logistics operations. The real-time tracking and maintenance scheduling have reduced our downtime by 40% and improved our overall efficiency. Their customer service team is always responsive and helpful."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-image">
+                        <img src="assets/avatar-4.jpg" alt="Sarah Johnson">
+                    </div>
+                    <div class="author-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>Fleet Manager, Express Logistics</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "We've been using their services for our delivery fleet for over 2 years now. The preventive maintenance program has significantly reduced our repair costs, and their fuel management system has helped us optimize our routes and reduce consumption."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-image">
+                        <img src="assets/avatar-1.jpg" alt="Michael Chen">
+                    </div>
+                    <div class="author-info">
+                        <h3>Michael Chen</h3>
+                        <p>Operations Director, FastTrack Deliveries</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "The implementation of their fleet management solution was seamless. Their team provided excellent training and support. We've seen a 25% reduction in fuel costs and improved vehicle longevity since partnering with them."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-image">
+                        <img src="assets/avatar-2.jpg" alt="David Martinez">
+                    </div>
+                    <div class="author-info">
+                        <h3>David Martinez</h3>
+                        <p>CEO, City Fresh Distribution</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "Their comprehensive fleet management platform has been a game-changer for our business. The automated reporting and analytics have given us valuable insights into our operations, helping us make data-driven decisions."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-image">
+                        <img src="assets/avatar-3.jpg" alt="Rachel Thompson">
+                    </div>
+                    <div class="author-info">
+                        <h3>Rachel Thompson</h3>
+                        <p>Operations Manager, Global Transit Solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations-section">
+        <h2>Locations</h2>
+        <p>Our strategic locations in Norwalk, CT and Dallas, TX allow us to provide comprehensive fleet services across the East Coast and Central United States.</p>
+        
+        <div class="locations-grid">
+            <div class="location-card">
+                <div class="location-image">
+                    <img src="assets/location1.jpg" alt="Norwalk Connecticut">
+                </div>
+                <h3>Norwalk Connecticut</h3>
+                <p>Our East Coast headquarters, strategically located near I-95 and the Merritt Parkway, providing rapid fleet services throughout the Northeast corridor from Boston to New York City.</p>
+                <a href="#">Get directions</a>
+            </div>
+            
+            <div class="location-card">
+                <div class="location-image">
+                    <img src="assets/location2.jpeg" alt="Dallas Texas">
+                </div>
+                <h3>Dallas Texas</h3>
+                <p>Centrally located in the heart of Texas, our Dallas facility serves as our Southern hub, offering comprehensive fleet services across the Dallas-Fort Worth metroplex and surrounding states.</p>
+                <a href="#">Get directions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="footer-newsletter">
+                <p>Subscribe to our newsletter for the latest updates on new features and product releases.</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <button type="submit" class="subscribe-btn">Subscribe</button>
+                    <p class="consent-text">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
+                </form>
+            </div>
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="assets/wefleet logo.png" alt="wefleet logo">
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="prop-content">
+                <a href="#">Prop Content</a>
+                <a href="#">Prop Content</a>
+                <a href="#">Prop Content</a>
+            </div>
+            <p class="copyright">© 2025 weFleet</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- EmailJS for newsletter functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("DuOV7E-B3Rc1Ts2Eu");
+        })();
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
