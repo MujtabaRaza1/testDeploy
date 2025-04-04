@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.querySelector('.loading-screen');
     const body = document.body;
+    const header = document.querySelector('header');
 
     // Show loading screen for 5 seconds
     setTimeout(() => {
@@ -13,6 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingScreen.style.display = 'none';
         }, 500);
     }, 5000);
+
+    // Scroll event to handle sticky header styles
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 });
 
 // Preload the GIF
@@ -153,6 +163,30 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // FAQ Accordion Functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-toggle').textContent = '+';
+                }
+            });
+            
+            // Toggle the clicked item
+            item.classList.toggle('active');
+            
+            // Update the toggle symbol
+            const toggle = item.querySelector('.faq-toggle');
+            toggle.textContent = item.classList.contains('active') ? '−' : '+';
+        });
+    });
 });
 
 // Hamburger Menu

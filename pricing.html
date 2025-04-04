@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - Wefleet</title>
+    <title>WeFleet Pricing - Fleet Maintenance & Roadside Assistance Plans</title>
+    <meta name="description" content="Choose from WeFleet's flexible fleet maintenance and roadside assistance plans. Options for small, medium, and large fleets with 24/7 emergency service.">
+    <meta name="keywords" content="fleet service pricing, fleet maintenance plans, roadside assistance cost, fleet emergency service, fleet service packages">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://wefleet.com/pricing.html">
+    <meta property="og:title" content="WeFleet Pricing - Fleet Maintenance & Roadside Assistance Plans">
+    <meta property="og:description" content="Choose from WeFleet's flexible fleet maintenance and roadside assistance plans. Options for small, medium, and large fleets.">
+    <meta property="og:url" content="https://wefleet.com/pricing.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://wefleet.com/assets/wefleet-og-image.jpg">
     <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -15,7 +26,7 @@
                 <span></span>
             </button>
             <div class="logo">
-                <img src="assets/wefleet logo.png" alt="wefleet logo">
+                <img src="assets/wefleet logo.png" alt="WeFleet Logo - Fleet Services and Roadside Assistance">
             </div>
             <div class="nav-menu">
                 <ul class="menu">
@@ -23,6 +34,7 @@
                     <li><a href="pricing.html" class="active">Pricing</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
                 <div class="cta-buttons">
                     <button class="btn btn-contact">Contact Us</button>
@@ -130,24 +142,44 @@
             </div>
         </section>
 
-        <section class="faq-section container">
+        <section class="faq-section container" id="faq">
             <h2>Frequently Asked Questions</h2>
-            <div class="faq-grid">
+            <div class="faq-accordion">
                 <div class="faq-item">
-                    <h3>What's included in the basic maintenance checks?</h3>
-                    <p>Basic maintenance checks include fluid level inspections, tire pressure checks, brake pad measurements, and general vehicle safety assessments.</p>
+                    <div class="faq-question">
+                        <h3>What's included in the basic maintenance checks?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Basic maintenance checks include fluid level inspections, tire pressure checks, brake pad measurements, and general vehicle safety assessments.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <h3>Can I upgrade my plan at any time?</h3>
-                    <p>Yes, you can upgrade your plan at any time. The new rate will be prorated for the remainder of your billing cycle.</p>
+                    <div class="faq-question">
+                        <h3>Can I upgrade my plan at any time?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can upgrade your plan at any time. The new rate will be prorated for the remainder of your billing cycle.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <h3>What is the response time for emergency services?</h3>
-                    <p>Our average response time is 30 minutes or less in metropolitan areas. Response times may vary in rural locations.</p>
+                    <div class="faq-question">
+                        <h3>What is the response time for emergency services?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our average response time is 30 minutes or less in metropolitan areas. Response times may vary in rural locations.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <h3>Do you offer custom plans for larger fleets?</h3>
-                    <p>Yes, we offer customized enterprise solutions for fleets larger than 50 vehicles. Contact our sales team for a tailored quote.</p>
+                    <div class="faq-question">
+                        <h3>Do you offer custom plans for larger fleets?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer customized enterprise solutions for fleets larger than 50 vehicles. Contact our sales team for a tailored quote.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -166,7 +198,7 @@
             </div>
             <div class="footer-info">
                 <div class="footer-logo">
-                    <img src="assets/wefleet logo.png" alt="wefleet logo">
+                    <img src="assets/wefleet logo.png" alt="WeFleet Logo">
                 </div>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -179,13 +211,64 @@
         </div>
         <div class="footer-bottom">
             <div class="prop-content">
-                <a href="#">Prop Content</a>
-                <a href="#">Prop Content</a>
-                <a href="#">Prop Content</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="sitemap-page.html">Sitemap</a>
             </div>
-            <p class="copyright">© 2025 weFleet</p>
+            <p class="copyright">© 2025 WeFleet</p>
         </div>
     </footer>
+
+    <!-- Structured Data for Service Pricing -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "WeFleet Fleet Services",
+      "serviceType": "Fleet Maintenance and Roadside Assistance",
+      "provider": {
+        "@type": "Organization",
+        "name": "WeFleet",
+        "url": "https://wefleet.com"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Basic Fleet Care",
+          "price": "29",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2025-12-31",
+          "description": "Perfect for small fleets up to 5 vehicles. Includes monthly fleet wash service, basic maintenance checks, emergency roadside assistance, 24/7 phone support, and online booking system."
+        },
+        {
+          "@type": "Offer",
+          "name": "Professional Fleet",
+          "price": "79",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2025-12-31",
+          "description": "Ideal for medium fleets up to 15 vehicles. Includes bi-weekly fleet wash service, comprehensive maintenance, priority emergency response, dedicated account manager, fleet management dashboard, and tire service & replacement."
+        },
+        {
+          "@type": "Offer",
+          "name": "Enterprise Fleet",
+          "price": "149",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2025-12-31",
+          "description": "Perfect for large fleets of 16+ vehicles. Includes weekly fleet wash service, full preventive maintenance, VIP emergency response, 24/7 on-site support, custom maintenance schedule, full vehicle diagnostics, and mobile service units."
+        }
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://wefleet.com/contact.html",
+        "serviceSmsNumber": "1-800-WEFLEET",
+        "servicePhone": "1-800-WEFLEET"
+      }
+    }
+    </script>
 
     <script src="script.js"></script>
 </body>
