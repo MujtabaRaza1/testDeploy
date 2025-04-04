@@ -217,35 +217,39 @@ document.querySelectorAll('.menu a').forEach(link => {
     });
 });
 
+// Contact Us Button Redirect
+document.addEventListener('DOMContentLoaded', function() {
+    const contactBtns = document.querySelectorAll('.btn-contact');
+    contactBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            window.location.href = 'contact.html';
+        });
+    });
+});
+
 // Newsletter Form Handling
-document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+document.getElementById('newsletter-form')?.addEventListener('submit', function(e) {
     e.preventDefault();
     
     const email = document.getElementById('email').value;
     const button = this.querySelector('button');
     const originalText = button.textContent;
     
-    try {
-        button.textContent = 'Subscribing...';
-        button.disabled = true;
-        
-        // Here you would typically send this to your backend
-        // For demonstration, we'll use EmailJS
-        const templateParams = {
-            to_email: email,
-            from_name: 'weFleet',
-            message: 'Thank you for subscribing to our newsletter!'
-        };
-
-        // EmailJS configuration
-        await emailjs.send(
-            'service_d01tm8s',      // Service ID
-            'template_zvbszyc',     // Template ID
-            templateParams,
-            'DuOV7E-B3Rc1Ts2Eu'    // Public Key
-        );
-        
-        // Success state
+    // Show loading state
+    button.textContent = 'Subscribing...';
+    button.disabled = true;
+    
+    // Submit to Google Forms using fetch API
+    const formData = new FormData();
+    formData.append('entry.798775296', email); // Newsletter form entry ID
+    
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSfzwJDwjU7mLb5kKulOx9rwvwn8EFOleSqyAQE8El-ge5nbRA/formResponse', {
+        method: 'POST',
+        mode: 'no-cors', // Important for CORS policy
+        body: formData
+    })
+    .then(() => {
+        // Success state - since we're using no-cors, we won't know if it succeeded, but we'll assume it did
         button.textContent = 'Subscribed!';
         document.getElementById('email').value = '';
         
@@ -253,17 +257,19 @@ document.getElementById('newsletter-form').addEventListener('submit', async func
             button.textContent = originalText;
             button.disabled = false;
         }, 2000);
-        
-    } catch (error) {
-        console.error('Error:', error);
+    })
+    .catch(error => {
+        console.error('Newsletter Error:', error);
         button.textContent = 'Error! Try again';
         
         setTimeout(() => {
             button.textContent = originalText;
             button.disabled = false;
         }, 2000);
-    }
+    });
 });
+
+// Contact Form Handling is now handled directly in contact.html with Google Forms
 
 
 

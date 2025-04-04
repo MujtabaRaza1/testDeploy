@@ -61,12 +61,12 @@
                     <div class="info-card">
                         <h3>General Inquiries</h3>
                         <p>For non-emergency questions</p>
-                        <a href="mailto:info@wefleet.com" class="contact-link">info@wefleet.com</a>
+                        <a href="mailto:wedofleets@gmail.com" class="contact-link">info@wefleet.com</a>
                     </div>
                     <div class="info-card">
                         <h3>Office Location</h3>
                         <p>123 Fleet Street<br>Los Angeles, CA 90001</p>
-                        <a href="#" class="contact-link">Get Directions</a>
+                        <a href="#map-section" class="contact-link">Get Directions</a>
                     </div>
                     <div class="info-card">
                         <h3>Business Hours</h3>
@@ -75,40 +75,44 @@
                 </div>
                 <div class="contact-form-container">
                     <h2>Send Us a Message</h2>
-                    <form class="contact-form">
+                    <form id="contact-form" class="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdgrQbUUoKmNlSnLU1ZbQCcS7DSzPULeYsMxpcfZjM49A2KfA/formResponse" method="POST" target="hidden-iframe" onsubmit="return handleFormSubmit(event)">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="entry.1393023130" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="entry.1422744376" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="entry.1422921085" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required>
+                            <select id="subject" name="entry.340368498" required>
                                 <option value="">Select a subject</option>
-                                <option value="emergency">Emergency Service</option>
-                                <option value="maintenance">Fleet Maintenance</option>
-                                <option value="quote">Request Quote</option>
-                                <option value="other">Other</option>
+                                <option value="Emergency Service">Emergency Service</option>
+                                <option value="Fleet Maintenance">Fleet Maintenance</option>
+                                <option value="Request Quote">Request Quote</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="entry.1006824268" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-accent">Send Message</button>
                     </form>
+                    <iframe name="hidden-iframe" id="hidden-iframe" style="display:none;"></iframe>
+                    <div id="form-success-message" class="form-success-message">
+                        <p>Your Request has been Submitted. You will be contacted shortly from our team! Thanks.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="map-section">
+        <section class="map-section" id="map-section">
             <div class="map-container">
                 <h2 class="container">Our Locations</h2>
                 <div class="location-list container">
@@ -265,7 +269,7 @@
             <div class="footer-newsletter">
                 <p>Subscribe to our newsletter for the latest updates on new features and product releases.</p>
                 <form id="newsletter-form" class="newsletter-form">
-                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="entry.798775296" placeholder="Enter your email" required>
                     <button type="submit" class="subscribe-btn">Subscribe</button>
                     <p class="consent-text">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
                 </form>
@@ -413,6 +417,36 @@
         }
       ]
     }
+    </script>
+
+    <!-- Google Forms Integration -->
+    <script type="text/javascript">
+        function handleFormSubmit(event) {
+            // Don't prevent default - let the form submit to Google Forms
+            
+            // Show loading state on button
+            const button = event.target.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = 'Sending...';
+            button.disabled = true;
+            
+            // Show success message after a short delay (giving time for the form to submit)
+            setTimeout(() => {
+                const successMessage = document.getElementById('form-success-message');
+                successMessage.classList.add('active');
+                
+                // Reset form (will happen automatically from the iframe submission)
+                
+                // Hide success message after 3 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('active');
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }, 3000);
+            }, 1000);
+            
+            return true;
+        }
     </script>
 
     <script src="script.js"></script>
