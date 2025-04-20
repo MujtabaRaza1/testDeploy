@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Scroll event to handle sticky header styles
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
+        if (window.scrollY > 1) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
@@ -38,9 +38,10 @@ const topImages = [
     'assets/image1.jpeg',
     'assets/image2.jpeg',
     'assets/image3.jpeg',
-    'assets/image4.jpeg',
+    'assets/image4.jpg',
     'assets/image5.jpeg',
-    'assets/image6.jpeg'
+    'assets/image6.jpeg',
+    'assets/oil1.jpg'
 ];
 
 const bottomImages = [
@@ -48,7 +49,9 @@ const bottomImages = [
     'assets/image9.jpeg',
     'assets/image10.jpeg',
     'assets/image11.jpeg',
-    'assets/image12.jpeg'
+    'assets/image12.jpeg',
+    'assets/oil2.jpg',
+    'assets/oil3.jpg'
 ];
 
 function createSlider(images, trackElement) {
@@ -75,28 +78,50 @@ document.addEventListener('DOMContentLoaded', () => {
         createSlider(bottomImages, bottomTrack);
     }
 
-    // Feature section functionality
-    const featureItems = document.querySelectorAll('.feature-item');
+    // Feature section functionality using event delegation
+    const featuresContent = document.querySelector('.features-content');
     const displayImage = document.getElementById('feature-display-image');
+    const featuresSection = document.querySelector('.features-section');
 
-    featureItems.forEach(item => {
-        item.addEventListener('click', () => {
+    // Use event delegation for better handling of dynamically moved elements
+    featuresContent.addEventListener('click', function(e) {
+        // Find the clicked feature item or its parent
+        const featureItem = e.target.closest('.feature-item');
+        
+        // If a feature item was clicked
+        if (featureItem) {
+            // Get all feature items
+            const allFeatureItems = document.querySelectorAll('.feature-item');
+            
             // Remove active class from all items
-            featureItems.forEach(i => i.classList.remove('active'));
+            allFeatureItems.forEach(item => item.classList.remove('active'));
             
             // Add active class to clicked item
-            item.classList.add('active');
+            featureItem.classList.add('active');
             
             // Update the image
-            const imageUrl = item.getAttribute('data-image');
+            const imageUrl = featureItem.getAttribute('data-image');
             displayImage.style.opacity = '0';
             
             setTimeout(() => {
                 displayImage.src = imageUrl;
                 displayImage.style.opacity = '1';
             }, 300);
-        });
+            
+            // Scroll to show the full section
+            setTimeout(() => {
+                featuresSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 350);
+        }
     });
+
+    // Set initial active feature image
+    const initialActive = featuresContent.querySelector('.feature-item.active');
+    if (initialActive) {
+        // Update the image for the initial active item
+        const imageUrl = initialActive.getAttribute('data-image');
+        displayImage.src = imageUrl;
+    }
 
     // Pricing Toggle Functionality
     const toggleBtns = document.querySelectorAll('.toggle-btn');
@@ -270,6 +295,40 @@ document.getElementById('newsletter-form')?.addEventListener('submit', function(
 });
 
 // Contact Form Handling is now handled directly in contact.html with Google Forms
+
+// Phone button handler for copying to clipboard on desktop
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneButtons = document.querySelectorAll('.phone-button');
+    
+    phoneButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Check if it's not a mobile device (no touch capability or larger screen)
+            if (!('ontouchstart' in window) || window.innerWidth > 768) {
+                e.preventDefault(); // Prevent the default tel: behavior
+                
+                const phoneNumber = this.getAttribute('data-phone');
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(phoneNumber)
+                    .then(() => {
+                        // Show success message
+                        const originalText = this.textContent;
+                        this.textContent = 'Number Copied!';
+                        
+                        // Reset button text after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy: ', err);
+                        alert('Phone number: ' + phoneNumber);
+                    });
+            }
+            // On mobile devices, the default tel: link behavior will work
+        });
+    });
+});
 
 
 

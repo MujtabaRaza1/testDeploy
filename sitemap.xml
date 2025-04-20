@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>https://wefleet.com/index.html</loc>
+      <loc>https://wefleet.com/</loc>
       <lastmod>2023-04-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>1.0</priority>
    </url>
    <url>
-      <loc>https://wefleet.com/about.html</loc>
+      <loc>https://wefleet.com/about</loc>
       <lastmod>2023-04-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://wefleet.com/pricing.html</loc>
+      <loc>https://wefleet.com/pricing</loc>
       <lastmod>2023-04-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
    </url>
    <url>
-      <loc>https://wefleet.com/contact.html</loc>
+      <loc>https://wefleet.com/contact</loc>
       <lastmod>2023-04-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://wefleet.com/privacy.html</loc>
+      <loc>https://wefleet.com/privacy</loc>
       <lastmod>2023-04-04</lastmod>
       <changefreq>yearly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://wefleet.com/terms.html</loc>
+      <loc>https://wefleet.com/terms</loc>
       <lastmod>2023-04-04</lastmod>
       <changefreq>yearly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://wefleet.com/sitemap-page.html</loc>
+      <loc>https://wefleet.com/sitemap-page</loc>
       <lastmod>2023-04-04</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>

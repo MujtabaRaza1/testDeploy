@@ -38,15 +38,15 @@
             </div>
             <div class="nav-menu">
                 <ul class="menu">
-                    <li><a href="./index.html" class="active">Home</a></li>
-                    <li><a href="./pricing.html">Pricing</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
-                    <li><a href="./about.html">About Us</a></li>
-                    <li><a href="./privacy.html">Privacy Policy</a></li>
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
                 </ul>
                 <div class="cta-buttons">
                     <button class="btn btn-contact">Contact Us</button>
-                    <button class="btn btn-call">Call Now!</button>
+                    <a href="tel:4694225611" class="btn btn-call phone-button" data-phone="4694225611">Call Now!</a>
                 </div>
             </div>
         </nav>
@@ -55,10 +55,10 @@
     <main>
         <section class="hero container">
             <h1>24/7 Fleet Care & Emergency Road Services</h1>
-            <p>Professional fleet maintenance and emergency roadside assistance. From routine fleet car washes to urgent roadside repairs, we're your trusted automotive service partner.</p>
+            <p>"Professional fleet maintenance and emergency roadside assistance. From routine fleet car washes to urgent roadside repairs. We're your trusted automotive service partner. We come to you."</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary">Schedule Fleet Service</button>
-                <button class="btn btn-secondary">Emergency Assistance</button>
+                <a href="/contact#contact-form" class="btn btn-primary">Schedule Fleet Service</a>
+                <a href="tel:4694225611" class="btn btn-secondary phone-button" data-phone="4694225611">Emergency Assistance</a>
             </div>
         </section>
 
@@ -85,9 +85,9 @@
                 <h3>Fleet Washing Services</h3>
                 <p>Keep your entire fleet looking professional with our comprehensive washing services. Regular cleaning schedules tailored to your fleet size and needs.</p>
             </div>
-            <div class="feature-item" data-image="assets/image2.jpeg">
+            <div class="feature-item" data-image="assets/oil-change-vehicle.jpg.webp">
                 <h3>Preventive Maintenance</h3>
-                <p>Regular maintenance programs to keep your fleet running smoothly. From oil changes to brake services, we handle it all.</p>
+                <p>Regular maintenance programs to keep your fleet running smoothly. From (5 minute) oil changes to (30 minute) brake services, we handle it all.</p>
             </div>
             <div class="feature-item" data-image="assets/image3.jpeg">
                 <h3>24/7 Emergency Response</h3>
@@ -96,29 +96,28 @@
         </div>
     </section>
 
-    <section class="tilted-section">
+    <!-- <section class="tilted-section">
         <div class="tilted-container">
             <div class="content-card">
                 <div class="content-text">
                     <h2>24/7 Emergency Roadside Assistance</h2>
                     <p>Stranded on the road? We're just a call away. Our rapid response team provides immediate assistance for tire changes, battery issues, mechanical failures, and towing services - anytime, anywhere.</p>
                 </div>
-                <button class="btn btn-accent">Call Now</button>
+                <a href="tel:4694225611" class="btn btn-accent phone-button" data-phone="4694225611">Call Now</a>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- One-Stop Auto Shop Section -->
     <section class="auto-shop-section">
         <div class="container auto-shop-container">
             <div class="auto-shop-content">
-                <div class="section-label">Services</div>
                 <h2>Your One-Stop Oil Change Service</h2>
                 <p>We know you've heard it before, but regular maintenance is an important part of preventative care for your fleet vehicles. On most synthetic oil changes, <a href="#" class="text-link">WeFleet</a> states that you should change your oil at least twice a year no matter how few miles you drive. That's advice we can stand behind.</p>
                 <p>Our fleet maintenance service ensures that your vehicles are properly lubricated and reduces wear and tear on your engines. You may not realize it, but your vehicle's oil lubricates hundreds of engine parts and minimizes friction.</p>
                 <p>The oil you use matters too. With over 30 years of experience in servicing cars and trucks of all makes and models, our ASE-certified technicians use high-quality oil and filters with every oil change. No matter what vehicle you drive, trust WeFleet for comprehensive and reliable fleet maintenance service.</p>
                 <p>We're conveniently located with multiple service centers across the country, and offer an in-depth inspection along with every maintenance service so you can stay on top of your fleet's condition. Book your appointment online today!</p>
-                <a href="contact.html" class="btn btn-primary book-btn">Book an Appointment Online</a>
+                <a href="/contact" class="btn btn-primary book-btn">Book an Appointment Online</a>
             </div>
             <div class="auto-shop-image">
                 <img src="assets/oil-change.jpg" alt="Oil change service for fleet vehicles">
@@ -140,7 +139,7 @@
             <div class="pricing-card">
                 <div class="card-label">Basic Fleet Care</div>
                 <div class="price">$29</div>
-                <div class="price-description">Perfect for small fleets up to 5 vehicles</div>
+                <div class="price-description">Perfect for small fleets from 5 up to 25 vehicles</div>
                 <ul class="features-list">
                     <li>Monthly Fleet Wash Service</li>
                     <li>Basic Maintenance Checks</li>
@@ -153,7 +152,7 @@
             <div class="pricing-card">
                 <div class="card-label">Professional Fleet</div>
                 <div class="price">$79</div>
-                <div class="price-description">Ideal for medium fleets up to 15 vehicles</div>
+                <div class="price-description">Ideal for medium fleets from 25 up to 50 vehicles</div>
                 <ul class="features-list">
                     <li>Bi-weekly Fleet Wash Service</li>
                     <li>Comprehensive Maintenance</li>
@@ -167,7 +166,7 @@
             <div class="pricing-card">
                 <div class="card-label">Enterprise Fleet</div>
                 <div class="price">$149</div>
-                <div class="price-description">Perfect for large fleets of 16+ vehicles</div>
+                <div class="price-description">Perfect for large fleets of 50+ vehicles</div>
                 <ul class="features-list">
                     <li>Weekly Fleet Wash Service</li>
                     <li>Full Preventive Maintenance</li>
@@ -285,23 +284,24 @@
         <p>Our strategic locations in Norwalk, CT and Dallas, TX allow us to provide comprehensive fleet services across the East Coast and Central United States.</p>
         
         <div class="locations-grid">
-            <div class="location-card">
-                <div class="location-image">
-                    <img src="assets/location1.jpg" alt="Norwalk Connecticut">
-                </div>
-                <h3>Norwalk Connecticut</h3>
-                <p>Our East Coast headquarters, strategically located near I-95 and the Merritt Parkway, providing rapid fleet services throughout the Northeast corridor from Boston to New York City.</p>
-                <a href="#">Get directions</a>
-            </div>
-            
+
             <div class="location-card">
                 <div class="location-image">
                     <img src="assets/location2.jpeg" alt="Dallas Texas">
                 </div>
                 <h3>Dallas Texas</h3>
                 <p>Centrally located in the heart of Texas, our Dallas facility serves as our Southern hub, offering comprehensive fleet services across the Dallas-Fort Worth metroplex and surrounding states.</p>
-                <a href="#">Get directions</a>
+                <a href="/contact#map-section">Get directions</a>
             </div>
+            <div class="location-card">
+                <div class="location-image">
+                    <img src="assets/location1.jpg" alt="Norwalk Connecticut">
+                </div>
+                <h3>Norwalk Connecticut</h3>
+                <p>Our East Coast headquarters, strategically located near I-95 and the Merritt Parkway, providing rapid fleet services throughout the Northeast corridor from Boston to New York City.</p>
+                <a href="/contact#map-section">Get directions</a>
+            </div>
+            
         </div>
     </section>
 
@@ -323,7 +323,7 @@
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
@@ -331,9 +331,9 @@
         </div>
         <div class="footer-bottom">
             <div class="prop-content">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="sitemap-page.html">Sitemap</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/sitemap-page">Sitemap</a>
             </div>
             <p class="copyright">© 2025 WeFleet</p>
         </div>

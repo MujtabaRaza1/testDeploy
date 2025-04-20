@@ -296,7 +296,8 @@ nav {
 
 .btn-primary {
     background-color: var(--accent-color);
-    color: white;
+    color: black;
+    text-decoration: none;
 }
 
 .btn-primary::before {
@@ -307,6 +308,11 @@ nav {
     background-color: white;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
+    text-decoration: none;
+}
+.phone-button {
+    text-decoration: none;
+    color: black;
 }
 
 @media screen and (max-width: 1024px) {
@@ -487,11 +493,41 @@ nav {
     font-size: 24px;
     margin-bottom: 10px;
     position: relative;
+    transition: color 0.3s ease;
 }
 
 .feature-item p {
     color: var(--secondary-color);
     position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Active and hover styles for feature items */
+.feature-item.active, 
+.feature-item:hover {
+    background-color: black;
+}
+
+.feature-item.active h3, 
+.feature-item:hover h3 {
+    color: var(--accent-color);
+}
+
+.feature-item.active p, 
+.feature-item:hover p {
+    color: white;
+}
+
+.feature-item:not(.active):not(:hover) {
+    background-color: transparent;
+}
+
+.feature-item:not(.active):not(:hover) h3 {
+    color: var(--primary-color);
+}
+
+.feature-item:not(.active):not(:hover) p {
+    color: var(--secondary-color);
 }
 
 @media screen and (max-width: 1024px) {
@@ -568,7 +604,7 @@ nav {
     left: 20px;
     right: 20px;
     bottom: 48px;
-    background-color: #F5D1B0;
+    background-color: var(--accent-color);
     z-index: 0;
 }
 
@@ -917,8 +953,26 @@ nav {
 
 .pricing-card:hover {
     border-color: var(--primary-color);
+    background-color: var(--accent-color);
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.pricing-card:hover .pricing-btn {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.pricing-card:hover .pricing-btn::before {
+    background-color: black;
+}
+
+.pricing-card:hover .pricing-btn:hover {
+    color: var(--accent-color);
+}
+
+.pricing-card:hover .features-list li::before {
+    color: white;
 }
 
 .card-label {
@@ -1060,7 +1114,6 @@ nav {
 /* Steps Section */
 .steps-section {
     position: relative;
-    overflow: hidden;
     padding: 80px 0;
 }
 
@@ -1111,7 +1164,7 @@ nav {
 }
 
 .step-card:nth-child(even) {
-    background-color: #F5D1B0;
+    background-color: var(--accent-color);
 }
 
 .step-number {
@@ -1361,7 +1414,7 @@ nav {
 
 @media screen and (max-width: 480px) {
     .testimonials-section {
-        padding: 30px 0;
+        padding: 100px 0;
     }
 
     .testimonials-header h2 {
@@ -2779,4 +2832,14 @@ nav {
     .auto-shop-content h2 {
         font-size: 26px;
     }
+}
+
+/* Custom Twitter/X icon replacement */
+.fa-brands.fa-x-twitter {
+    font-family: sans-serif;
+}
+
+.fa-brands.fa-x-twitter::before {
+    content: "𝕏";
+    font-size: 1.2em;
 } 
