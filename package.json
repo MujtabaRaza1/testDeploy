@@ -1,0 +1,25 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "A responsive website for WeFleet, a provider of 24/7 fleet services and emergency roadside assistance.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MujtabaRaza1/testDeploy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MujtabaRaza1/testDeploy/issues"
+  },
+  "homepage": "https://github.com/MujtabaRaza1/testDeploy#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
