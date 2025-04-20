@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Instructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>How to Create Your Favicon</h1>
+    
+    <div class="step">
+        <h2>Step 1: Prepare Your Logo</h2>
+        <p>I've copied your WeFleet logo to <code>assets/wefleet-logo-orig.png</code> to preserve the original.</p>
+    </div>
+    
+    <div class="step">
+        <h2>Step 2: Generate Favicon</h2>
+        <p>Go to one of these free favicon generator sites:</p>
+        <ul>
+            <li><a href="https://realfavicongenerator.net/" target="_blank">RealFaviconGenerator</a> (recommended)</li>
+            <li><a href="https://www.favicon.cc/" target="_blank">Favicon.cc</a></li>
+            <li><a href="https://favicon.io/" target="_blank">Favicon.io</a></li>
+        </ul>
+        <p>Upload your logo file and download the generated favicon package.</p>
+    </div>
+    
+    <div class="step">
+        <h2>Step 3: Implement the Favicon</h2>
+        <p>Once you have the favicon.ico file:</p>
+        <ol>
+            <li>Place the favicon.ico file in your assets directory</li>
+            <li>Your HTML files already have the correct link tag:</li>
+            <pre><code>&lt;link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon"&gt;</code></pre>
+        </ol>
+    </div>
+    
+    <div class="step">
+        <h2>Step 4: Advanced Implementation (Optional)</h2>
+        <p>For the best cross-browser support, favicons can include multiple sizes and formats. Add these to the head section of your HTML files:</p>
+        <pre><code>&lt;!-- Standard favicon --&gt;
+&lt;link rel="icon" type="image/x-icon" href="assets/favicon.ico"&gt;
+
+&lt;!-- iOS/macOS icons --&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png"&gt;
+
+&lt;!-- Android/Chrome icons --&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png"&gt;
+
+&lt;!-- Web App Manifest --&gt;
+&lt;link rel="manifest" href="assets/favicon/site.webmanifest"&gt;</code></pre>
+    </div>
+</body>
+</html> 
