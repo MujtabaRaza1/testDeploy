@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('scrolled');
         }
     });
+
+    // FAQ Accordion Functionality - Added here to ensure DOM is loaded
+    initFaqAccordion();
 });
 
 // Preload the GIF
@@ -188,30 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    // FAQ Accordion Functionality
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', () => {
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                    otherItem.querySelector('.faq-toggle').textContent = '+';
-                }
-            });
-            
-            // Toggle the clicked item
-            item.classList.toggle('active');
-            
-            // Update the toggle symbol
-            const toggle = item.querySelector('.faq-toggle');
-            toggle.textContent = item.classList.contains('active') ? '−' : '+';
-        });
-    });
 });
 
 // Hamburger Menu
@@ -247,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactBtns = document.querySelectorAll('.btn-contact');
     contactBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            window.location.href = 'contact.html';
+            window.location.href = 'contact';
         });
     });
 });
@@ -329,6 +308,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Separate function to initialize FAQ Accordion
+function initFaqAccordion() {
+    console.log("Initializing FAQ accordion");
+    const faqItems = document.querySelectorAll('.faq-item');
+    console.log("Found " + faqItems.length + " FAQ items");
+    
+    if (faqItems.length === 0) return; // Guard clause if no FAQ items found
+    
+    faqItems.forEach((item, index) => {
+        console.log("Setting up FAQ item #" + (index + 1));
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const toggle = item.querySelector('.faq-toggle');
+        
+        if (!question || !answer || !toggle) {
+            console.error("Missing elements for FAQ item", item);
+            return;
+        }
+        
+        // Force set initial state
+        item.classList.remove('active');
+        toggle.textContent = '+';
+        
+        question.addEventListener('click', function(e) {
+            console.log("FAQ item clicked", index + 1);
+            e.stopPropagation(); // Prevent event bubbling
+            
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    const otherToggle = otherItem.querySelector('.faq-toggle');
+                    if (otherToggle) otherToggle.textContent = '+';
+                }
+            });
+            
+            // Toggle the clicked item
+            const wasActive = item.classList.contains('active');
+            console.log("Was active before click:", wasActive);
+            item.classList.toggle('active');
+            console.log("Is active after click:", item.classList.contains('active'));
+            
+            // Update toggle text and directly manipulate answer style for better visibility
+            if (item.classList.contains('active')) {
+                toggle.textContent = '−';
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                answer.style.padding = "0 25px 20px";
+            } else {
+                toggle.textContent = '+';
+                answer.style.maxHeight = "0px";
+                answer.style.padding = "0 25px";
+            }
+        });
+    });
+}
 
 
 
