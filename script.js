@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.querySelector('.loading-screen');
     const body = document.body;
     const header = document.querySelector('header');
+    const mobileFloatingBtn = document.querySelector('.mobile-floating-btn');
+
+    // Hide mobile floating button on contact page
+    if (mobileFloatingBtn && window.location.pathname.includes('/contact')) {
+        mobileFloatingBtn.style.display = 'none';
+    }
 
     // Show loading screen for 2.5 seconds
     setTimeout(() => {
@@ -26,6 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // FAQ Accordion Functionality - Added here to ensure DOM is loaded
     initFaqAccordion();
+    
+    // Initialize Custom Services Slider
+    initCustomSlider();
+    
+    // Initialize Clients Showcase
+    initClientsShowcase();
 });
 
 // Preload the GIF
@@ -365,5 +377,231 @@ function initFaqAccordion() {
     });
 }
 
+// Custom Coverflow Slider
+function initCustomSlider() {
+    const slider = document.querySelector('.custom-slider');
+    if (!slider) return;
 
+    const slides = slider.querySelectorAll('.slide');
+    const prevBtn = slider.querySelector('.prev-btn');
+    const nextBtn = slider.querySelector('.next-btn');
+    const categoryLinks = document.querySelectorAll('.category-link');
+    
+    let currentIndex = 2; // Start with middle slide for symmetry
+    const totalSlides = slides.length;
 
+    function updateSlider() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev', 'next', 'prev-2', 'next-2');
+            
+            if (index === currentIndex) {
+                slide.classList.add('active');
+            } else if (index === (currentIndex - 1 + totalSlides) % totalSlides) {
+                slide.classList.add('prev');
+            } else if (index === (currentIndex + 1) % totalSlides) {
+                slide.classList.add('next');
+            } else if (index === (currentIndex - 2 + totalSlides) % totalSlides) {
+                slide.classList.add('prev-2');
+            } else if (index === (currentIndex + 2) % totalSlides) {
+                slide.classList.add('next-2');
+            }
+        });
+
+        // Update category navigation
+        const categories = ['all', 'Maintenance', 'Emergency', 'Detailing', 'Technology'];
+        const currentCategory = categories[currentIndex];
+        
+        categoryLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.category === currentCategory) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlider();
+    }
+
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // Category navigation
+    categoryLinks.forEach((link, index) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToSlide(index);
+        });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide(); // Swipe left - go to next
+            } else {
+                prevSlide(); // Swipe right - go to previous
+            }
+        }
+    }
+
+    // Initialize
+    updateSlider();
+}
+
+// Clients Showcase Functionality
+function initClientsShowcase() {
+    const showcaseSection = document.querySelector('.clients-showcase');
+    if (!showcaseSection) return;
+
+    // Animate statistics counter
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    function animateCounter(element) {
+        const targetValue = parseFloat(element.getAttribute('data-count'));
+        const duration = 2000; // 2 seconds
+        const increment = targetValue / (duration / 16); // 60fps
+        let currentValue = 0;
+        
+        const counter = setInterval(() => {
+            currentValue += increment;
+            if (currentValue >= targetValue) {
+                currentValue = targetValue;
+                clearInterval(counter);
+            }
+            
+            // Format the number based on the target value
+            if (targetValue === 99.9) {
+                element.textContent = currentValue.toFixed(1);
+            } else {
+                element.textContent = Math.floor(currentValue);
+            }
+        }, 16);
+    }
+
+    // Intersection Observer for stats animation
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumbers = entry.target.querySelectorAll('.stat-number');
+                statNumbers.forEach((statNumber, index) => {
+                    setTimeout(() => {
+                        animateCounter(statNumber);
+                    }, index * 200); // Stagger animation
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const statsSection = document.querySelector('.showcase-stats');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+
+    // Enhanced hover effects for client cards
+    const clientCards = document.querySelectorAll('.client-card');
+    clientCards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+            // Add staggered animation to other cards
+            clientCards.forEach((otherCard, otherIndex) => {
+                if (otherIndex !== index) {
+                    otherCard.style.transform = 'scale(0.95)';
+                    otherCard.style.opacity = '0.7';
+                }
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            // Reset all cards
+            clientCards.forEach((otherCard) => {
+                otherCard.style.transform = '';
+                otherCard.style.opacity = '';
+            });
+        });
+
+        // Add click effect
+        card.addEventListener('click', () => {
+            card.style.animation = 'none';
+            card.offsetHeight; // Trigger reflow
+            card.style.animation = 'cardPulse 0.6s ease-out';
+        });
+    });
+
+    // Parallax effect for background elements
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const showcaseRect = showcaseSection.getBoundingClientRect();
+        const showcaseTop = showcaseRect.top + scrolled;
+        const showcaseHeight = showcaseRect.height;
+        
+        // Only apply parallax when section is in view
+        if (scrolled + window.innerHeight > showcaseTop && scrolled < showcaseTop + showcaseHeight) {
+            const parallaxValue = (scrolled - showcaseTop) * 0.5;
+            
+            const backgroundGrid = showcaseSection.querySelector('.background-grid');
+            const particles = showcaseSection.querySelectorAll('.particle');
+            
+            if (backgroundGrid) {
+                backgroundGrid.style.transform = `translate(${parallaxValue * 0.1}px, ${parallaxValue * 0.1}px)`;
+            }
+            
+            particles.forEach((particle, index) => {
+                const speed = 0.02 + (index * 0.01);
+                particle.style.transform = `translateY(${parallaxValue * speed}px)`;
+            });
+        }
+    });
+}
+
+// Add CSS animation for card pulse effect
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes cardPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.08) rotateY(5deg); }
+        100% { transform: scale(1); }
+    }
+`;
+document.head.appendChild(style);
