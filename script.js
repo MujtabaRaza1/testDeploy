@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const header = document.querySelector('header');
 
-    // Show loading screen for 5 seconds
+    // Show loading screen for 2.5 seconds
     setTimeout(() => {
         loadingScreen.classList.add('fade-out');
         body.classList.add('content-loaded');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             loadingScreen.style.display = 'none';
         }, 500);
-    }, 5000);
+    }, 2000);
 
     // Scroll event to handle sticky header styles
     window.addEventListener('scroll', () => {
