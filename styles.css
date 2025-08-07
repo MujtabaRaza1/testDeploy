@@ -381,7 +381,7 @@ nav {
     position: relative;
     overflow: hidden;
     transform: translateY(50px);
-    opacity: 0;
+    opacity: 1;
 }
 
 .service-card.animate {
