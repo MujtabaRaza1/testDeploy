@@ -16,7 +16,7 @@
 [[headers]]
   for = "*.css"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=3600"
 
 [[headers]]
   for = "*.js"
@@ -61,6 +61,21 @@
 [[redirects]]
   from = "/terms"
   to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/oil-change"
+  to = "/oil-change.html"
+  status = 200
+
+[[redirects]]
+  from = "/detailing"
+  to = "/detailing.html"
+  status = 200
+
+[[redirects]]
+  from = "/fleets"
+  to = "/fleets.html"
   status = 200
 
 [[redirects]]
