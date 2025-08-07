@@ -47,7 +47,14 @@
             <div class="nav-menu">
                 <ul class="menu">
                     <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/services">Services</a></li>
+                    <li class="dropdown">
+                        <a href="/services" class="dropdown-toggle">Services <span class="dropdown-arrow">▶</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/oil-change">Oil Change</a></li>
+                            <li><a href="/detailing">Detailing</a></li>
+                            <li><a href="/fleets">Fleets</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/about">About Us</a></li>
                     <li><a href="/privacy">Privacy Policy</a></li>
@@ -88,7 +95,18 @@
     <a href="/contact#contact-form" class="mobile-floating-btn">
         Schedule Free Demo!
     </a>
-
+    
+    <div class="services-section-container"
+    style="
+    max-width: 1200px;
+    width: 100%;
+    font-size: 30px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-decoration: underline;
+    color: #453f3f;">
+        <h2>Services</h2>
+    </div>
     <section class="features-section container">
         <div class="features-image">
             <img src="assets/image1.jpeg" alt="Feature Image" id="feature-display-image">
@@ -122,7 +140,7 @@
     </section> -->
 
     <!-- One-Stop Auto Shop Section -->
-    <section class="auto-shop-section">
+    <!-- <section class="auto-shop-section">
         <div class="container auto-shop-container">
             <div class="auto-shop-content">
                 <h2>Your One-Stop Oil Change Service</h2>
@@ -136,9 +154,9 @@
                 <img src="assets/oil-change.jpg" alt="Oil change service for fleet vehicles">
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <section class="services-slider-section container">
+    <section class="services-slider-section container" style="overflow: hidden;">
         <div class="services-header">
             <span>Our Fleet Services</span>
             <h2>Professional Fleet Care Solutions</h2>

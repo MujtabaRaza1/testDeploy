@@ -38,7 +38,14 @@
             <div class="nav-menu">
                 <ul class="menu">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/services" class="active">Services</a></li>
+                    <li class="dropdown">
+                        <a href="/services" class="dropdown-toggle active">Services <span class="dropdown-arrow">▶</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/oil-change">Oil Change</a></li>
+                            <li><a href="/detailing">Detailing</a></li>
+                            <li><a href="/fleets">Fleets</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/about">About Us</a></li>
                     <li><a href="/privacy">Privacy Policy</a></li>
@@ -57,87 +64,82 @@
             <p>Comprehensive fleet maintenance and emergency service solutions designed for fleets of all sizes.</p>
         </section>
 
-        <section class="services-section container">
-            <div class="services-cards">
-                <div class="service-card">
-                    <div class="card-label">Basic Fleet Care</div>
-                    <div class="service-icon">🚛</div>
-                    <div class="service-description">Perfect for small fleets up to 25 vehicles</div>
-                    <ul class="features-list">
-                        <li>Monthly Fleet Wash Service</li>
-                        <li>Basic Maintenance Checks</li>
-                        <li>Emergency Roadside Assistance</li>
-                        <li>24/7 Phone Support</li>
-                        <li>Online Booking System</li>
-                    </ul>
-                    <a href="/contact#contact-form" class="service-btn">Get Started</a>
+        <!-- Services Cards Section -->
+        <section class="services-showcase container">
+            <h2>We look forward to serving you</h2>
+            
+            <div class="service-cards-grid">
+                <!-- Oil Change Card -->
+                <div class="service-showcase-card" data-service="oil-change">
+                    <div class="card-background">
+                        <div class="card-content">
+                            <h3>Oil Change</h3>
+                            <p>This is our bread and butter. Professional mobile oil change services for your fleet. We come to your location with premium oils and filters.</p>
+                            <div class="estimate-time">Estimate within 1 day</div>
+                        </div>
+                        <div class="card-image">
+                            <img src="assets/oil1.jpg" alt="Oil Change Service" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="/oil-change" class="btn btn-details">Details</a>
+                        <a href="/contact" class="btn btn-contact-card">Contact</a>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="card-label">Professional Fleet</div>
-                    <div class="service-icon">🔧</div>
-                    <div class="service-description">Ideal for medium fleets up to 50 vehicles</div>
-                    <ul class="features-list">
-                        <li>Bi-weekly Fleet Wash Service</li>
-                        <li>Comprehensive Maintenance</li>
-                        <li>Priority Emergency Response</li>
-                        <li>Dedicated Account Manager</li>
-                        <li>Fleet Management Dashboard</li>
-                        <li>Tire Service & Replacement</li>
-                    </ul>
-                    <a href="/contact#contact-form" class="service-btn">Get Started</a>
+
+                <!-- Fleet Detailing Card -->
+                <div class="service-showcase-card" data-service="detailing">
+                    <div class="card-background">
+                        <div class="card-content">
+                            <h3>Mobile Detailing</h3>
+                            <p>To maintain your fleet's professional appearance and protect your investment, it's recommended that your vehicles receive regular detailing services.</p>
+                            <div class="estimate-time">Professional results guaranteed</div>
+                        </div>
+                        <div class="card-image">
+                            <img src="assets/image4.jpg" alt="Fleet Detailing Service" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="/detailing" class="btn btn-details">Details</a>
+                        <a href="/contact" class="btn btn-contact-card">Contact</a>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="card-label">Enterprise Fleet</div>
-                    <div class="service-icon">⚡</div>
-                    <div class="service-description">Perfect for large fleets of 50+ vehicles</div>
-                    <ul class="features-list">
-                        <li>Weekly Fleet Wash Service</li>
-                        <li>Full Preventive Maintenance</li>
-                        <li>VIP Emergency Response</li>
-                        <li>24/7 On-Site Support</li>
-                        <li>Custom Maintenance Schedule</li>
-                        <li>Full Vehicle Diagnostics</li>
-                        <li>Mobile Service Units</li>
-                    </ul>
-                    <a href="/contact#contact-form" class="service-btn">Get Started</a>
+
+                <!-- Fleet Management Card -->
+                <div class="service-showcase-card" data-service="fleets">
+                    <div class="card-background">
+                        <div class="card-content">
+                            <h3>Fleet Management</h3>
+                            <p>Comprehensive fleet management solutions got you covered? Say goodbye to those hard to reach maintenance issues that could be affecting your fleet's performance.</p>
+                            <div class="estimate-time">Custom solutions available</div>
+                        </div>
+                        <div class="card-image">
+                            <img src="assets/image2.jpeg" alt="Fleet Management Service" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="/fleets" class="btn btn-details">Details</a>
+                        <a href="/contact" class="btn btn-contact-card">Contact</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="services-details container">
-            <h2>Service Details & Features</h2>
-            <div class="details-grid">
-                <div class="detail-card">
-                    <h3>Emergency Services</h3>
-                    <ul>
-                        <li>24/7 Roadside Assistance</li>
-                        <li>Tire Changes & Repairs</li>
-                        <li>Battery Jump Starts</li>
-                        <li>Fuel Delivery</li>
-                        <li>Lockout Services</li>
-                    </ul>
-                </div>
-                <div class="detail-card">
-                    <h3>Maintenance Services</h3>
-                    <ul>
-                        <li>Regular Oil Changes</li>
-                        <li>Brake Inspections</li>
-                        <li>Tire Rotations</li>
-                        <li>Multi-point Inspections</li>
-                        <li>Fluid Top-offs</li>
-                    </ul>
-                </div>
-                <div class="detail-card">
-                    <h3>Additional Features</h3>
-                    <ul>
-                        <li>GPS Fleet Tracking</li>
-                        <li>Fuel Management System</li>
-                        <li>Driver Safety Programs</li>
-                        <li>Extended Coverage Hours</li>
-                        <li>Custom Reporting</li>
-                    </ul>
-                </div>
-            </div>
+        <section class="google-reviews">
+            <!-- Decorative floating elements -->
+            <div class="review-decoration star-1">⭐</div>
+            <div class="review-decoration star-2">⭐</div>
+            <div class="review-decoration star-3">⭐</div>
+            <div class="review-decoration star-4">⭐</div>
+            <div class="review-decoration star-5">⭐</div>
+            
+            <iframe src="https://widget.taggbox.com/295607?website=1"
+            style="width: 100%;
+            min-height: 300px;
+            margin: 0 auto;
+            overflow: auto;
+            border: none;
+            padding: 15px;"></iframe>
         </section>
 
         <section class="faq-section container" id="faq">

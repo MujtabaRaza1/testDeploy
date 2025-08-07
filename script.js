@@ -233,6 +233,181 @@ document.querySelectorAll('.menu a').forEach(link => {
     });
 });
 
+// Nav Menu Scroll Control
+document.addEventListener('DOMContentLoaded', function() {
+    const navMenu = document.querySelector('.nav-menu');
+    const html = document.documentElement;
+    
+    if (navMenu) {
+        // Create observer to watch for class changes
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    if (navMenu.classList.contains('active')) {
+                        // Stop scrolling when nav-menu has active class
+                        html.style.overflow = 'hidden';
+                    } else {
+                        // Restore scrolling when active class is removed
+                        html.style.overflow = '';
+                    }
+                }
+            });
+        });
+        
+        // Start observing
+        observer.observe(navMenu, { attributes: true });
+    }
+});
+
+// Dropdown Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        // Mobile: No click functionality needed since dropdown is always visible
+        toggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1125) {
+                // On mobile, allow normal navigation to services page
+                return true;
+            }
+        });
+        
+        // Desktop: Handle hover for accessibility
+        dropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 1125) {
+                dropdown.classList.add('hover');
+            }
+        });
+        
+        dropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 1125) {
+                dropdown.classList.remove('hover');
+            }
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+        
+        // Keyboard navigation
+        toggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (window.innerWidth > 1125) {
+                    // On desktop, focus first dropdown item
+                    const firstLink = menu.querySelector('a');
+                    if (firstLink) firstLink.focus();
+                }
+            }
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const firstLink = menu.querySelector('a');
+                if (firstLink) firstLink.focus();
+            }
+        });
+        
+        // Navigate within dropdown menu
+        const menuLinks = menu.querySelectorAll('a');
+        menuLinks.forEach((link, index) => {
+            link.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const nextLink = menuLinks[index + 1];
+                    if (nextLink) nextLink.focus();
+                }
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prevLink = menuLinks[index - 1];
+                    if (prevLink) {
+                        prevLink.focus();
+                    } else {
+                        toggle.focus();
+                    }
+                }
+                if (e.key === 'Escape') {
+                    dropdown.classList.remove('active');
+                    toggle.focus();
+                }
+            });
+        });
+    });
+    
+    // No need to close dropdowns on mobile since they're always visible
+});
+
+// Oil Change Page Animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate counters in hero section
+    function animateCounters() {
+        const statItems = document.querySelectorAll('.stat-item');
+        statItems.forEach(item => {
+            const target = parseInt(item.getAttribute('data-stat'));
+            const counter = item.querySelector('.stat-number');
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = Math.floor(current);
+            }, 40);
+        });
+    }
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                
+                if (element.classList.contains('stat-item')) {
+                    // Trigger counter animation
+                    if (!element.classList.contains('animated')) {
+                        element.classList.add('animated');
+                        animateCounters();
+                    }
+                } else if (element.hasAttribute('data-animation')) {
+                    // Trigger other animations
+                    element.classList.add('animate');
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    const animatedElements = document.querySelectorAll('[data-animation], .stat-item, .service-card, .pricing-card, .benefit-item');
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Add staggered animation delays
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    pricingCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.3}s`;
+    });
+
+    const benefitItems = document.querySelectorAll('.benefit-item');
+    benefitItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.2}s`;
+    });
+});
+
 // Contact Us Button Redirect
 document.addEventListener('DOMContentLoaded', function() {
     const contactBtns = document.querySelectorAll('.btn-contact');
@@ -294,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function() {
     phoneButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             // Check if it's not a mobile device (no touch capability or larger screen)
-            if (!('ontouchstart' in window) || window.innerWidth > 768) {
+            if (!('ontouchstart' in window) || window.innerWidth > 1125) {
                 e.preventDefault(); // Prevent the default tel: behavior
                 
                 const phoneNumber = this.getAttribute('data-phone');
