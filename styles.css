@@ -1247,6 +1247,8 @@ nav {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     backdrop-filter: blur(10px);
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .contact-benefits .benefit-icon {
@@ -1268,12 +1270,15 @@ nav {
 
 .contact-methods {
     display: flex;
+    height: max-content;
     gap: 20px;
     margin-top: 40px;
 }
 
 .contact-method {
     display: flex;
+    width: 200px;
+    height: 100px;
     align-items: center;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
@@ -1388,7 +1393,7 @@ nav {
 }
 
 /* Responsive Design for Fleets */
-@media (max-width: 768px) {
+@media (max-width: 1125px) {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 40px;
