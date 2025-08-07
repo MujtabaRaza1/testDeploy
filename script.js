@@ -341,25 +341,34 @@ document.addEventListener('DOMContentLoaded', function() {
     // No need to close dropdowns on mobile since they're always visible
 });
 
-// Oil Change Page Animations
+// Service Pages Animations
 document.addEventListener('DOMContentLoaded', function() {
-    // Animate counters in hero section
+    // Animate individual counter
+    function animateCounter(statItem) {
+        const target = parseInt(statItem.getAttribute('data-stat'));
+        const counter = statItem.querySelector('.stat-number');
+        
+        if (!target || !counter || statItem.classList.contains('animated')) {
+            return;
+        }
+        
+        statItem.classList.add('animated');
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            counter.textContent = Math.floor(current);
+        }, 40);
+    }
+    
+    // Animate all counters (for initial load)
     function animateCounters() {
-        const statItems = document.querySelectorAll('.stat-item');
-        statItems.forEach(item => {
-            const target = parseInt(item.getAttribute('data-stat'));
-            const counter = item.querySelector('.stat-number');
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                counter.textContent = Math.floor(current);
-            }, 40);
-        });
+        const statItems = document.querySelectorAll('.stat-item:not(.animated)');
+        statItems.forEach(animateCounter);
     }
 
     // Intersection Observer for scroll animations
@@ -374,11 +383,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const element = entry.target;
                 
                 if (element.classList.contains('stat-item')) {
-                    // Trigger counter animation
-                    if (!element.classList.contains('animated')) {
-                        element.classList.add('animated');
-                        animateCounters();
-                    }
+                    // Trigger counter animation for this specific item
+                    animateCounter(element);
                 } else if (element.hasAttribute('data-animation')) {
                     // Trigger other animations
                     element.classList.add('animate');
@@ -390,6 +396,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Observe elements for animation
     const animatedElements = document.querySelectorAll('[data-animation], .stat-item, .service-card, .pricing-card, .benefit-item');
     animatedElements.forEach(el => observer.observe(el));
+    
+    // Fallback: animate counters that are immediately visible
+    setTimeout(() => {
+        const visibleStats = document.querySelectorAll('.stat-item:not(.animated)');
+        visibleStats.forEach(stat => {
+            const rect = stat.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                animateCounter(stat);
+            }
+        });
+    }, 500);
+    
+    // Emergency fallback: If still no animations after 2 seconds, just show the numbers
+    setTimeout(() => {
+        const stillNotAnimated = document.querySelectorAll('.stat-item:not(.animated)');
+        stillNotAnimated.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-stat'));
+            const counter = stat.querySelector('.stat-number');
+            if (target && counter && counter.textContent === '0') {
+                counter.textContent = target;
+                stat.classList.add('animated');
+            }
+        });
+    }, 2000);
 
     // Add staggered animation delays
     const serviceCards = document.querySelectorAll('.service-card');
