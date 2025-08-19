@@ -3,8 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.querySelector('.loading-screen');
     const body = document.body;
     const header = document.querySelector('header');
+    const mobileFloatingBtn = document.querySelector('.mobile-floating-btn');
 
-    // Show loading screen for 5 seconds
+    // Hide mobile floating button on contact page
+    if (mobileFloatingBtn && window.location.pathname.includes('/contact')) {
+        mobileFloatingBtn.style.display = 'none';
+    }
+
+    // Show loading screen for 2.5 seconds
     setTimeout(() => {
         loadingScreen.classList.add('fade-out');
         body.classList.add('content-loaded');
@@ -13,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             loadingScreen.style.display = 'none';
         }, 500);
-    }, 5000);
+    }, 2000);
 
     // Scroll event to handle sticky header styles
     window.addEventListener('scroll', () => {
@@ -26,6 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // FAQ Accordion Functionality - Added here to ensure DOM is loaded
     initFaqAccordion();
+    
+    // Initialize Custom Services Slider
+    initCustomSlider();
+    
+    // Initialize Clients Showcase
+    initClientsShowcase();
 });
 
 // Preload the GIF
@@ -221,6 +233,211 @@ document.querySelectorAll('.menu a').forEach(link => {
     });
 });
 
+// Nav Menu Scroll Control
+document.addEventListener('DOMContentLoaded', function() {
+    const navMenu = document.querySelector('.nav-menu');
+    const html = document.documentElement;
+    
+    if (navMenu) {
+        // Create observer to watch for class changes
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    if (navMenu.classList.contains('active')) {
+                        // Stop scrolling when nav-menu has active class
+                        html.style.overflow = 'hidden';
+                    } else {
+                        // Restore scrolling when active class is removed
+                        html.style.overflow = '';
+                    }
+                }
+            });
+        });
+        
+        // Start observing
+        observer.observe(navMenu, { attributes: true });
+    }
+});
+
+// Dropdown Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        // Mobile: No click functionality needed since dropdown is always visible
+        toggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1125) {
+                // On mobile, allow normal navigation to services page
+                return true;
+            }
+        });
+        
+        // Desktop: Handle hover for accessibility
+        dropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 1125) {
+                dropdown.classList.add('hover');
+            }
+        });
+        
+        dropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 1125) {
+                dropdown.classList.remove('hover');
+            }
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+        
+        // Keyboard navigation
+        toggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (window.innerWidth > 1125) {
+                    // On desktop, focus first dropdown item
+                    const firstLink = menu.querySelector('a');
+                    if (firstLink) firstLink.focus();
+                }
+            }
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const firstLink = menu.querySelector('a');
+                if (firstLink) firstLink.focus();
+            }
+        });
+        
+        // Navigate within dropdown menu
+        const menuLinks = menu.querySelectorAll('a');
+        menuLinks.forEach((link, index) => {
+            link.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const nextLink = menuLinks[index + 1];
+                    if (nextLink) nextLink.focus();
+                }
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prevLink = menuLinks[index - 1];
+                    if (prevLink) {
+                        prevLink.focus();
+                    } else {
+                        toggle.focus();
+                    }
+                }
+                if (e.key === 'Escape') {
+                    dropdown.classList.remove('active');
+                    toggle.focus();
+                }
+            });
+        });
+    });
+    
+    // No need to close dropdowns on mobile since they're always visible
+});
+
+// Service Pages Animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate individual counter
+    function animateCounter(statItem) {
+        const target = parseInt(statItem.getAttribute('data-stat'));
+        const counter = statItem.querySelector('.stat-number');
+        
+        if (!target || !counter || statItem.classList.contains('animated')) {
+            return;
+        }
+        
+        statItem.classList.add('animated');
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            counter.textContent = Math.floor(current);
+        }, 40);
+    }
+    
+    // Animate all counters (for initial load)
+    function animateCounters() {
+        const statItems = document.querySelectorAll('.stat-item:not(.animated)');
+        statItems.forEach(animateCounter);
+    }
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                
+                if (element.classList.contains('stat-item')) {
+                    // Trigger counter animation for this specific item
+                    animateCounter(element);
+                } else if (element.hasAttribute('data-animation')) {
+                    // Trigger other animations
+                    element.classList.add('animate');
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    const animatedElements = document.querySelectorAll('[data-animation], .stat-item, .service-card, .pricing-card, .benefit-item');
+    animatedElements.forEach(el => observer.observe(el));
+    
+    // Fallback: animate counters that are immediately visible
+    setTimeout(() => {
+        const visibleStats = document.querySelectorAll('.stat-item:not(.animated)');
+        visibleStats.forEach(stat => {
+            const rect = stat.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                animateCounter(stat);
+            }
+        });
+    }, 500);
+    
+    // Emergency fallback: If still no animations after 2 seconds, just show the numbers
+    setTimeout(() => {
+        const stillNotAnimated = document.querySelectorAll('.stat-item:not(.animated)');
+        stillNotAnimated.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-stat'));
+            const counter = stat.querySelector('.stat-number');
+            if (target && counter && counter.textContent === '0') {
+                counter.textContent = target;
+                stat.classList.add('animated');
+            }
+        });
+    }, 2000);
+
+    // Add staggered animation delays
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    pricingCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.3}s`;
+    });
+
+    const benefitItems = document.querySelectorAll('.benefit-item');
+    benefitItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.2}s`;
+    });
+});
+
 // Contact Us Button Redirect
 document.addEventListener('DOMContentLoaded', function() {
     const contactBtns = document.querySelectorAll('.btn-contact');
@@ -282,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
     phoneButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             // Check if it's not a mobile device (no touch capability or larger screen)
-            if (!('ontouchstart' in window) || window.innerWidth > 768) {
+            if (!('ontouchstart' in window) || window.innerWidth > 1125) {
                 e.preventDefault(); // Prevent the default tel: behavior
                 
                 const phoneNumber = this.getAttribute('data-phone');
@@ -365,5 +582,376 @@ function initFaqAccordion() {
     });
 }
 
+// Custom Coverflow Slider
+function initCustomSlider() {
+    const slider = document.querySelector('.custom-slider');
+    if (!slider) return;
 
+    const slides = slider.querySelectorAll('.slide');
+    const prevBtn = slider.querySelector('.prev-btn');
+    const nextBtn = slider.querySelector('.next-btn');
+    const categoryLinks = document.querySelectorAll('.category-link');
+    
+    let currentIndex = 2; // Start with middle slide for symmetry
+    const totalSlides = slides.length;
 
+    function updateSlider() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev', 'next', 'prev-2', 'next-2');
+            
+            if (index === currentIndex) {
+                slide.classList.add('active');
+            } else if (index === (currentIndex - 1 + totalSlides) % totalSlides) {
+                slide.classList.add('prev');
+            } else if (index === (currentIndex + 1) % totalSlides) {
+                slide.classList.add('next');
+            } else if (index === (currentIndex - 2 + totalSlides) % totalSlides) {
+                slide.classList.add('prev-2');
+            } else if (index === (currentIndex + 2) % totalSlides) {
+                slide.classList.add('next-2');
+            }
+        });
+
+        // Update category navigation
+        const categories = ['all', 'Maintenance', 'Emergency', 'Detailing', 'Technology'];
+        const currentCategory = categories[currentIndex];
+        
+        categoryLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.category === currentCategory) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlider();
+    }
+
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // Category navigation
+    categoryLinks.forEach((link, index) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToSlide(index);
+        });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide(); // Swipe left - go to next
+            } else {
+                prevSlide(); // Swipe right - go to previous
+            }
+        }
+    }
+
+    // Initialize
+    updateSlider();
+}
+
+// Clients Showcase Functionality
+function initClientsShowcase() {
+    const showcaseSection = document.querySelector('.clients-showcase');
+    if (!showcaseSection) return;
+
+    // Animate statistics counter
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    function animateCounter(element) {
+        const targetValue = parseFloat(element.getAttribute('data-count'));
+        const duration = 2000; // 2 seconds
+        const increment = targetValue / (duration / 16); // 60fps
+        let currentValue = 0;
+        
+        const counter = setInterval(() => {
+            currentValue += increment;
+            if (currentValue >= targetValue) {
+                currentValue = targetValue;
+                clearInterval(counter);
+            }
+            
+            // Format the number based on the target value
+            if (targetValue === 99.9) {
+                element.textContent = currentValue.toFixed(1);
+            } else {
+                element.textContent = Math.floor(currentValue);
+            }
+        }, 16);
+    }
+
+    // Intersection Observer for stats animation
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumbers = entry.target.querySelectorAll('.stat-number');
+                statNumbers.forEach((statNumber, index) => {
+                    setTimeout(() => {
+                        animateCounter(statNumber);
+                    }, index * 200); // Stagger animation
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const statsSection = document.querySelector('.showcase-stats');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+
+    // Enhanced hover effects for client cards
+    const clientCards = document.querySelectorAll('.client-card');
+    clientCards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+            // Add staggered animation to other cards
+            clientCards.forEach((otherCard, otherIndex) => {
+                if (otherIndex !== index) {
+                    otherCard.style.transform = 'scale(0.95)';
+                    otherCard.style.opacity = '0.7';
+                }
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            // Reset all cards
+            clientCards.forEach((otherCard) => {
+                otherCard.style.transform = '';
+                otherCard.style.opacity = '';
+            });
+        });
+
+        // Add click effect
+        card.addEventListener('click', () => {
+            card.style.animation = 'none';
+            card.offsetHeight; // Trigger reflow
+            card.style.animation = 'cardPulse 0.6s ease-out';
+        });
+    });
+
+    // Parallax effect for background elements
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const showcaseRect = showcaseSection.getBoundingClientRect();
+        const showcaseTop = showcaseRect.top + scrolled;
+        const showcaseHeight = showcaseRect.height;
+        
+        // Only apply parallax when section is in view
+        if (scrolled + window.innerHeight > showcaseTop && scrolled < showcaseTop + showcaseHeight) {
+            const parallaxValue = (scrolled - showcaseTop) * 0.5;
+            
+            const backgroundGrid = showcaseSection.querySelector('.background-grid');
+            const particles = showcaseSection.querySelectorAll('.particle');
+            
+            if (backgroundGrid) {
+                backgroundGrid.style.transform = `translate(${parallaxValue * 0.1}px, ${parallaxValue * 0.1}px)`;
+            }
+            
+            particles.forEach((particle, index) => {
+                const speed = 0.02 + (index * 0.01);
+                particle.style.transform = `translateY(${parallaxValue * speed}px)`;
+            });
+        }
+    });
+}
+
+// Add CSS animation for card pulse effect
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes cardPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.08) rotateY(5deg); }
+        100% { transform: scale(1); }
+    }
+`;
+document.head.appendChild(style);
+
+// Service Area Checker
+document.addEventListener('DOMContentLoaded', function() {
+    const areaCodeInput = document.getElementById('areaCodeInput');
+    const checkAreaBtn = document.getElementById('checkAreaBtn');
+    const servicePopup = document.getElementById('servicePopup');
+    const popupClose = document.querySelector('.popup-close');
+    const popupIcon = document.querySelector('.popup-icon');
+    const popupTitle = document.querySelector('.popup-title');
+    const popupMessage = document.querySelector('.popup-message');
+    const popupBtn = document.querySelector('.popup-btn');
+
+    // DFW Zip Codes (major ranges)
+    const dfwZipCodes = [
+        // Dallas area zip codes
+        '75001', '75002', '75006', '75007', '75010', '75011', '75013', '75014', '75015', '75016',
+        '75017', '75019', '75020', '75021', '75022', '75023', '75024', '75025', '75026', '75027',
+        '75028', '75029', '75030', '75032', '75033', '75034', '75035', '75038', '75039', '75040',
+        '75041', '75042', '75043', '75044', '75045', '75046', '75047', '75048', '75049', '75050',
+        '75051', '75052', '75053', '75054', '75056', '75057', '75060', '75061', '75062', '75063',
+        '75065', '75067', '75068', '75069', '75070', '75071', '75074', '75075', '75076', '75077',
+        '75078', '75080', '75081', '75082', '75083', '75085', '75086', '75087', '75088', '75089',
+        '75090', '75091', '75092', '75093', '75094', '75098', '75104', '75105', '75106', '75116',
+        '75117', '75118', '75119', '75120', '75121', '75123', '75124', '75125', '75126', '75127',
+        '75132', '75134', '75135', '75137', '75138', '75141', '75142', '75146', '75149', '75150',
+        '75152', '75154', '75156', '75157', '75158', '75159', '75160', '75161', '75163', '75164',
+        '75165', '75166', '75167', '75168', '75172', '75173', '75180', '75181', '75182', '75185',
+        '75201', '75202', '75203', '75204', '75205', '75206', '75207', '75208', '75209', '75210',
+        '75211', '75212', '75214', '75215', '75216', '75217', '75218', '75219', '75220', '75221',
+        '75222', '75223', '75224', '75225', '75226', '75227', '75228', '75229', '75230', '75231',
+        '75232', '75233', '75234', '75235', '75236', '75237', '75238', '75240', '75241', '75242',
+        '75243', '75244', '75246', '75247', '75248', '75249', '75250', '75251', '75252', '75253',
+        '75254', '75260', '75261', '75262', '75263', '75264', '75265', '75266', '75267', '75270',
+        '75275', '75277', '75283', '75284', '75285', '75287', '75295',
+        // Fort Worth area zip codes
+        '76001', '76002', '76003', '76004', '76005', '76006', '76007', '76008', '76009', '76010',
+        '76011', '76012', '76013', '76014', '76015', '76016', '76017', '76018', '76019', '76020',
+        '76021', '76022', '76023', '76028', '76034', '76036', '76040', '76048', '76050', '76051',
+        '76052', '76053', '76054', '76058', '76059', '76060', '76061', '76063', '76064', '76065',
+        '76092', '76101', '76102', '76103', '76104', '76105', '76106', '76107', '76108', '76109',
+        '76110', '76111', '76112', '76114', '76115', '76116', '76117', '76118', '76119', '76120',
+        '76121', '76122', '76123', '76124', '76126', '76127', '76129', '76130', '76131', '76132',
+        '76133', '76134', '76135', '76136', '76137', '76140', '76147', '76148', '76155', '76161',
+        '76162', '76163', '76164', '76177', '76179', '76180', '76181', '76182', '76185', '76191',
+        '76192', '76193', '76196', '76197', '76198', '76199',
+        // Surrounding DFW areas
+        '75009', '75019', '75056', '75057', '75065', '75077', '75093', '75099', '76021', '76092'
+    ];
+
+    function showPopup(isInService, areaCode) {
+        if (isInService) {
+            // In Service Area
+            popupIcon.className = 'popup-icon success';
+            popupIcon.textContent = '✅';
+            popupTitle.textContent = 'Great News!';
+            popupMessage.textContent = `Zip code ${areaCode} is within our Dallas-Fort Worth service area! We're ready to serve your fleet.`;
+            popupBtn.textContent = 'Get Quote Now';
+            popupBtn.className = 'popup-btn btn btn-primary';
+            popupBtn.onclick = () => {
+                window.location.href = '#contact-form';
+                closePopup();
+            };
+        } else {
+            // Not in Service Area
+            popupIcon.className = 'popup-icon info';
+            popupIcon.textContent = 'ℹ️';
+            popupTitle.textContent = 'Not There Yet, But We Definitely Can!';
+            popupMessage.textContent = `Zip code ${areaCode} is outside our current service radius, but we're expanding! Let us know your location and we'll work something out.`;
+            popupBtn.textContent = 'Contact Us';
+            popupBtn.className = 'popup-btn btn btn-accent';
+            popupBtn.onclick = () => {
+                window.location.href = '#contact-form';
+                closePopup();
+            };
+        }
+        
+        servicePopup.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+        servicePopup.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    function checkAreaCode() {
+        const areaCode = areaCodeInput.value.trim();
+        
+        if (areaCode.length !== 5 || !/^\d{5}$/.test(areaCode)) {
+            alert('Please enter a valid 5-digit zip code');
+            return;
+        }
+
+        const isInService = dfwZipCodes.includes(areaCode);
+        showPopup(isInService, areaCode);
+    }
+
+    // Event Listeners
+    if (checkAreaBtn) {
+        checkAreaBtn.addEventListener('click', checkAreaCode);
+    }
+
+    if (areaCodeInput) {
+        areaCodeInput.addEventListener('keypress', function(e) {
+            // Only allow numbers
+            if (!/\d/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                e.preventDefault();
+            }
+            
+            // Check on Enter
+            if (e.key === 'Enter') {
+                checkAreaCode();
+            }
+        });
+
+        // Auto-format input
+        areaCodeInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 5) {
+                value = value.slice(0, 5);
+            }
+            e.target.value = value;
+        });
+    }
+
+    // Close popup events
+    if (popupClose) {
+        popupClose.addEventListener('click', closePopup);
+    }
+
+    if (servicePopup) {
+        servicePopup.addEventListener('click', function(e) {
+            if (e.target === servicePopup) {
+                closePopup();
+            }
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && servicePopup && servicePopup.classList.contains('show')) {
+            closePopup();
+        }
+    });
+});

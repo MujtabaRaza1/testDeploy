@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://wefleet.com/contact.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://wefleet.com/assets/wefleet-og-image.jpg">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2024.5">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <!-- iOS/macOS icons -->
@@ -38,14 +38,21 @@
             <div class="nav-menu">
                 <ul class="menu">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/pricing">Pricing</a></li>
+                    <li class="dropdown">
+                        <a href="/services" class="dropdown-toggle">Services <span class="dropdown-arrow">▶</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/oil-change">Oil Change</a></li>
+                            <li><a href="/detailing">Detailing</a></li>
+                            <li><a href="/fleets">Fleets</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/contact" class="active">Contact</a></li>
                     <li><a href="/about">About Us</a></li>
                     <li><a href="/privacy">Privacy Policy</a></li>
                 </ul>
                 <div class="cta-buttons">
                     <button class="btn btn-contact">Contact Us</button>
-                    <a href="tel:2145541097" class="btn btn-call phone-button" data-phone="2145541097">Call Now!</a>
+                    <a href="tel:2145541097" class="btn btn-call phone-button" data-phone="2145541097">Call Now! 214-554-1097</a>
                 </div>
             </div>
         </nav>
@@ -114,6 +121,37 @@
                     <iframe name="hidden-iframe" id="hidden-iframe" style="display:none;"></iframe>
                     <div id="form-success-message" class="form-success-message">
                         <p>Your Request has been Submitted. You will be contacted shortly from our team! Thanks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Area Checker Section -->
+        <section class="service-area-checker">
+            <div class="container">
+                <h2>Check Your Service Area</h2>
+                <p>Enter your zip code to see if we service your location in the Dallas-Fort Worth area</p>
+                
+                <div class="area-code-checker">
+                    <div class="checker-input">
+                        <input type="text" id="areaCodeInput" placeholder="Enter zip code (e.g., 75201)" maxlength="5">
+                        <button id="checkAreaBtn" class="btn btn-primary">Check Area</button>
+                    </div>
+                    
+                    <div class="service-radius-info">
+                        <h3>Dallas-Fort Worth Service Radius</h3>
+                        <p>We proudly serve the greater DFW metropolitan area</p>
+                    </div>
+                </div>
+                
+                <!-- Popup Messages -->
+                <div id="servicePopup" class="service-popup">
+                    <div class="popup-content">
+                        <span class="popup-close">&times;</span>
+                        <div class="popup-icon"></div>
+                        <h3 class="popup-title"></h3>
+                        <p class="popup-message"></p>
+                        <button class="popup-btn btn"></button>
                     </div>
                 </div>
             </div>
@@ -459,6 +497,6 @@
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <script src="script.js"></script>
+    <script src="script.js?v=2024.6"></script>
 </body>
 </html> 

@@ -1,0 +1,13 @@
+# Netlify redirects for clean URLs
+/services /services.html 200
+/oil-change /oil-change.html 200
+/detailing /detailing.html 200
+/fleets /fleets.html 200
+/about /about.html 200
+/contact /contact.html 200
+/privacy /privacy.html 200
+/terms /terms.html 200
+/sitemap-page /sitemap-page.html 200
+
+# Fallback for any other routes
+/* /index.html 200

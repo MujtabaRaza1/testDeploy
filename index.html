@@ -14,7 +14,8 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://wefleet.com/assets/wefleet-og-image.jpg">
     <!-- Load critical CSS first -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2024.6">
+
     <!-- Preload the GIF -->
     <link rel="preload" as="image" href="assets/Wefleet-GIF-Black.gif">
     <!-- Favicon -->
@@ -46,14 +47,21 @@
             <div class="nav-menu">
                 <ul class="menu">
                     <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/pricing">Pricing</a></li>
+                    <li class="dropdown">
+                        <a href="/services" class="dropdown-toggle">Services <span class="dropdown-arrow">▶</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/oil-change">Oil Change</a></li>
+                            <li><a href="/detailing">Detailing</a></li>
+                            <li><a href="/fleets">Fleets</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/about">About Us</a></li>
                     <li><a href="/privacy">Privacy Policy</a></li>
                 </ul>
                 <div class="cta-buttons">
                     <button class="btn btn-contact">Contact Us</button>
-                    <a href="tel:2145541097" class="btn btn-call phone-button" data-phone="2145541097">Call Now!</a>
+                    <a href="tel:2145541097" class="btn btn-call phone-button" data-phone="2145541097">Call Now! 214-554-1097</a>
                 </div>
             </div>
         </nav>
@@ -61,10 +69,10 @@
 
     <main>
         <section class="hero container">
-            <h1>24/7 Fleet Care & Emergency Road Services</h1>
-            <p>"Professional fleet maintenance and emergency roadside assistance. From routine fleet car washes to urgent roadside repairs. We're your trusted automotive service partner. We come to you."</p>
+            <h1>Fleet Care Anywhere. Zero Downtime</h1>
+            <p>"We bring certified mechanics and pro detailers to your lot—keeping your vehicles road-ready and your team on schedule."</p>
             <div class="hero-buttons">
-                <a href="/contact#contact-form" class="btn btn-primary">Schedule Fleet Service</a>
+                <a href="/contact#contact-form" class="btn btn-primary">Schedule a Free Demo Service</a>
                 <a href="tel:2145541097" class="btn btn-secondary phone-button" data-phone="2145541097">Emergency Assistance</a>
             </div>
         </section>
@@ -83,6 +91,22 @@
         </section>
     </main>
 
+    <!-- Mobile Floating Button -->
+    <a href="/contact#contact-form" class="mobile-floating-btn">
+        Schedule Free Demo!
+    </a>
+    
+    <div class="services-section-container"
+    style="
+    max-width: 1200px;
+    width: 100%;
+    font-size: 30px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-decoration: underline;
+    color: #453f3f;">
+        <h2>Services</h2>
+    </div>
     <section class="features-section container">
         <div class="features-image">
             <img src="assets/image1.jpeg" alt="Feature Image" id="feature-display-image">
@@ -116,7 +140,7 @@
     </section> -->
 
     <!-- One-Stop Auto Shop Section -->
-    <section class="auto-shop-section">
+    <!-- <section class="auto-shop-section">
         <div class="container auto-shop-container">
             <div class="auto-shop-content">
                 <h2>Your One-Stop Oil Change Service</h2>
@@ -130,61 +154,97 @@
                 <img src="assets/oil-change.jpg" alt="Oil change service for fleet vehicles">
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <section class="pricing-section container">
-        <div class="pricing-header">
-            <span>Fleet Service Plans</span>
-            <h2>Choose the Perfect Plan for Your Fleet</h2>
-            <p>Flexible fleet maintenance and emergency service packages designed to keep your vehicles running smoothly.</p>
+    <section class="services-slider-section container" style="overflow: hidden;">
+        <div class="services-header">
+            <span>Our Fleet Services</span>
+            <h2>Professional Fleet Care Solutions</h2>
+            <p>Comprehensive fleet maintenance and emergency services designed to keep your vehicles running smoothly.</p>
         </div>
-        <div class="pricing-toggle">
-            <button class="toggle-btn active">Monthly</button>
-            <button class="toggle-btn">Annually</button>
+        <div class="services-categories">
+            <a href="#" class="category-link" data-category="all">All Services</a>
+            <a href="#" class="category-link" data-category="Maintenance">Maintenance</a>
+            <a href="#" class="category-link active" data-category="Emergency">Emergency</a>
+            <a href="#" class="category-link" data-category="Detailing">Fleet Washing</a>
+            <a href="#" class="category-link" data-category="Technology">Technology</a>
         </div>
-        <div class="pricing-cards">
-            <div class="pricing-card">
-                <div class="card-label">Basic Fleet Care</div>
-                <div class="price">$29</div>
-                <div class="price-description">Perfect for small fleets from 5 up to 25 vehicles</div>
-                <ul class="features-list">
-                    <li>Monthly Fleet Wash Service</li>
-                    <li>Basic Maintenance Checks</li>
-                    <li>Emergency Roadside Assistance</li>
-                    <li>24/7 Phone Support</li>
-                    <li>Online Booking System</li>
-                </ul>
-                <button class="pricing-btn">Get Started</button>
+        <div class="custom-slider">
+            <div class="slider-container">
+                <div class="slide" data-category="all">
+                    <div class="service-card">
+                        <div class="service-icon">🌟</div>
+                        <h3>Complete Fleet Solutions</h3>
+                        <ul class="service-features">
+                            <li>Comprehensive maintenance programs</li>
+                            <li>24/7 emergency assistance</li>
+                            <li>Advanced fleet technology</li>
+                            <li>Professional service team</li>
+                            <li>Nationwide coverage</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-category="Maintenance">
+                    <div class="service-card">
+                        <div class="service-icon">🔧</div>
+                        <h3>Fleet Maintenance</h3>
+                        <ul class="service-features">
+                            <li>Regular service checks</li>
+                            <li>Oil changes & fluid checks</li>
+                            <li>Tire service & rotation</li>
+                            <li>Brake maintenance</li>
+                            <li>Preventive care programs</li>
+                            <li>Engine diagnostics</li>
+                            <li>Filter replacements</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-category="Emergency">
+                    <div class="service-card">
+                        <div class="service-icon">🚨</div>
+                        <h3>Emergency Services</h3>
+                        <ul class="service-features">
+                            <li>24/7 roadside assistance</li>
+                            <li>Mobile repair units</li>
+                            <li>Emergency towing</li>
+                            <li>Rapid response team</li>
+                            <li>Nationwide coverage</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-category="Detailing">
+                    <div class="service-card">
+                        <div class="service-icon">🚛</div>
+                        <h3>Fleet Washing & Detailing</h3>
+                        <ul class="service-features">
+                            <li>Professional fleet washing</li>
+                            <li>Interior & exterior detailing</li>
+                            <li>Regular cleaning schedules</li>
+                            <li>Eco-friendly products</li>
+                            <li>Mobile washing units</li>
+                            <li>Brand image maintenance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide" data-category="Technology">
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Fleet Technology</h3>
+                        <ul class="service-features">
+                            <li>Real-time fleet tracking</li>
+                            <li>Maintenance scheduling</li>
+                            <li>Performance analytics</li>
+                            <li>Cost optimization</li>
+                            <li>Digital reporting</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="pricing-card">
-                <div class="card-label">Professional Fleet</div>
-                <div class="price">$79</div>
-                <div class="price-description">Ideal for medium fleets from 25 up to 50 vehicles</div>
-                <ul class="features-list">
-                    <li>Bi-weekly Fleet Wash Service</li>
-                    <li>Comprehensive Maintenance</li>
-                    <li>Priority Emergency Response</li>
-                    <li>Dedicated Account Manager</li>
-                    <li>Fleet Management Dashboard</li>
-                    <li>Tire Service & Replacement</li>
-                </ul>
-                <button class="pricing-btn">Get Started</button>
-            </div>
-            <div class="pricing-card">
-                <div class="card-label">Enterprise Fleet</div>
-                <div class="price">$149</div>
-                <div class="price-description">Perfect for large fleets of 50+ vehicles</div>
-                <ul class="features-list">
-                    <li>Weekly Fleet Wash Service</li>
-                    <li>Full Preventive Maintenance</li>
-                    <li>VIP Emergency Response</li>
-                    <li>24/7 On-Site Support</li>
-                    <li>Custom Maintenance Schedule</li>
-                    <li>Full Vehicle Diagnostics</li>
-                    <li>Mobile Service Units</li>
-                </ul>
-                <button class="pricing-btn">Get Started</button>
-            </div>
+            <button class="slider-btn prev-btn">❮</button>
+            <button class="slider-btn next-btn">❯</button>
+        </div>
+        <div class="services-cta">
+            <a href="/contact" class="btn btn-primary">Get Started with Our Services</a>
         </div>
     </section>
 
@@ -216,72 +276,118 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="testimonials-header">
-            <h2>Testimonials</h2>
-            <p>Hear what our satisfied fleet managers and business owners have to say about our comprehensive vehicle management solutions.</p>
+    <!-- Clients Showcase Section -->
+    <section class="clients-showcase">
+        <div class="showcase-container">
+            <div class="showcase-header">
+                <span class="section-tag">Trusted Partners</span>
+                <h2>Powering Success for Industry Leaders</h2>
+                <p>Join the growing network of businesses that trust WeFleet for their fleet management needs.</p>
+            </div>
+            
+            <div class="clients-grid">
+                <div class="client-card" data-client="mayer-solar">
+                    <div class="client-logo">
+                        <img src="assets/Mayer-Logo.png" alt="Mayer Solar" class="logo-image" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="logo-placeholder" style="display: none;">
+                            <span>MAYER SOLAR</span>
+                        </div>
+                    </div>
+                    <div class="client-glow"></div>
+                    <div class="data-streams">
+                        <div class="stream stream-1"></div>
+                        <div class="stream stream-2"></div>
+                        <div class="stream stream-3"></div>
+                    </div>
+                </div>
+
+                <div class="client-card" data-client="imperium-roofing">
+                    <div class="client-logo">
+                        <img src="assets/imperium-logo.webp" alt="Imperium Roofing" class="logo-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="logo-placeholder" style="display: none;">
+                            <span>IMPERIUM ROOFING</span>
+                        </div>
+                    </div>
+                    <div class="client-glow"></div>
+                    <div class="data-streams">
+                        <div class="stream stream-1"></div>
+                        <div class="stream stream-2"></div>
+                        <div class="stream stream-3"></div>
+                    </div>
+                </div>
+
+                <div class="client-card" data-client="blue-frog">
+                    <div class="client-logo">
+                        <img src="assets/BLUEFROG-LOGO.png" alt="Blue Frog" class="logo-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="logo-placeholder" style="display: none;">
+                            <span>BLUE FROG</span>
+                        </div>
+                    </div>
+                    <div class="client-glow"></div>
+                    <div class="data-streams">
+                        <div class="stream stream-1"></div>
+                        <div class="stream stream-2"></div>
+                        <div class="stream stream-3"></div>
+                    </div>
+                </div>
+
+                <div class="client-card" data-client="star-power">
+                    <div class="client-logo">
+                        <img src="assets/Star-Power-Logo.png" alt="Star Power" class="logo-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="logo-placeholder" style="display: none;">
+                            <span>STAR POWER</span>
+                        </div>
+                    </div>
+                    <div class="client-glow"></div>
+                    <div class="data-streams">
+                        <div class="stream stream-1"></div>
+                        <div class="stream stream-2"></div>
+                        <div class="stream stream-3"></div>
+                    </div>
+                </div>
+
+                <div class="client-card" data-client="poochie">
+                    <div class="client-logo">
+                        <div class="logo-placeholder">
+                            <span>POOCHIE</span>
+                        </div>
+                    </div>
+                    <div class="client-glow"></div>
+                    <div class="data-streams">
+                        <div class="stream stream-1"></div>
+                        <div class="stream stream-2"></div>
+                        <div class="stream stream-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">Vehicles Managed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="99.9">0</div>
+                    <div class="stat-label">% Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="24">0</div>
+                    <div class="stat-label">Hour Support</div>
+                </div>
+            </div>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    "Their fleet management system has revolutionized our logistics operations. The real-time tracking and maintenance scheduling have reduced our downtime by 40% and improved our overall efficiency. Their customer service team is always responsive and helpful."
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-image">
-                        <img src="assets/avatar-4.jpg" alt="Sarah Johnson">
-                    </div>
-                    <div class="author-info">
-                        <h3>Sarah Johnson</h3>
-                        <p>Fleet Manager, Express Logistics</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    "We've been using their services for our delivery fleet for over 2 years now. The preventive maintenance program has significantly reduced our repair costs, and their fuel management system has helped us optimize our routes and reduce consumption."
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-image">
-                        <img src="assets/avatar-1.jpg" alt="Michael Chen">
-                    </div>
-                    <div class="author-info">
-                        <h3>Michael Chen</h3>
-                        <p>Operations Director, FastTrack Deliveries</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    "The implementation of their fleet management solution was seamless. Their team provided excellent training and support. We've seen a 25% reduction in fuel costs and improved vehicle longevity since partnering with them."
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-image">
-                        <img src="assets/avatar-2.jpg" alt="David Martinez">
-                    </div>
-                    <div class="author-info">
-                        <h3>David Martinez</h3>
-                        <p>CEO, City Fresh Distribution</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    "Their comprehensive fleet management platform has been a game-changer for our business. The automated reporting and analytics have given us valuable insights into our operations, helping us make data-driven decisions."
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-image">
-                        <img src="assets/avatar-3.jpg" alt="Rachel Thompson">
-                    </div>
-                    <div class="author-info">
-                        <h3>Rachel Thompson</h3>
-                        <p>Operations Manager, Global Transit Solutions</p>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="background-grid"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
     </section>
 
@@ -401,6 +507,6 @@
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <script src="script.js"></script>
+    <script src="script.js?v=2024.2"></script>
 </body>
 </html> 
